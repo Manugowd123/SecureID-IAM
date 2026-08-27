@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureID - Account Login</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="brand-header">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+          <span class="brand-title">SecureID</span>
+        </div>
+      </div>
+
+      <div id="alertBox" class="alert"></div>
+
+      <!-- STEP 1: LOGIN FORM -->
+      <div id="step1-login" class="step-panel active">
+        <p class="brand-subtitle">Sign in to your account</p>
+        <form id="loginForm" novalidate style="margin-top: 24px;">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="manoj@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label for="password" style="margin-bottom: 0;">Password</label>
+              <a href="forgot-password.html" style="color: var(--primary); font-size: 0.8rem; text-decoration: none; font-weight: 500;">Forgot Password?</a>
+            </div>
+            <input type="password" id="password" name="password" placeholder="••••••••" required style="margin-top: 6px;">
+          </div>
+
+          <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" id="rememberMe" name="rememberMe" style="width: auto; margin: 0;">
+            <label for="rememberMe" style="margin-bottom: 0; font-size: 0.85rem; cursor: pointer;">Remember Me</label>
+          </div>
+
+          <button type="submit" id="loginBtn" class="btn-primary" style="margin-top: 8px;">
+            <span class="spinner" id="loginSpinner"></span>
+            <span id="loginBtnText">Sign In</span>
+          </button>
+        </form>
+
+        <p style="text-align: center; margin-top: 20px; font-size: 0.85rem; color: var(--text-muted);">
+          Don't have an account? <a href="register.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Create Account</a>
+        </p>
+      </div>
+
+      <!-- STEP 2: MFA SMS OTP VERIFICATION -->
+      <div id="step2-login-mfa" class="step-panel">
+        <h2 class="step-title">Verify your phone</h2>
+        <p class="step-description">We sent a login verification code to your phone.</p>
+
+        <div class="form-group" style="margin-top: 24px;">
+          <label for="loginOtpInput">Enter 6-digit OTP</label>
+          <input type="text" id="loginOtpInput" maxlength="6" class="otp-input" placeholder="000000" autocomplete="off">
+        </div>
+
+        <div class="btn-group">
+          <button type="button" id="verifyLoginOtpBtn" class="btn-primary">
+            <span class="spinner" id="mfaSpinner"></span>
+            <span>Verify OTP</span>
+          </button>
+          <button type="button" id="resendLoginOtpBtn" class="btn-secondary">
+            <span>Resend OTP</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: LOGIN DASHBOARD / SUCCESS -->
+      <div id="step3-dashboard" class="step-panel center-content">
+        <div class="status-icon success-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h2 class="step-title">Welcome Back!</h2>
+        <p class="step-description" style="margin-bottom: 20px;">You have successfully authenticated with SecureID.</p>
+
+        <div id="userInfoBox" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 16px; border-radius: 8px; text-align: left; font-size: 0.88rem; margin-bottom: 24px;">
+          <p style="margin-bottom: 6px;"><strong>Name:</strong> <span id="userFullName">-</span></p>
+          <p style="margin-bottom: 6px;"><strong>Email:</strong> <span id="userEmail">-</span></p>
+          <p style="margin-bottom: 0;"><strong>Phone:</strong> <span id="userPhone">-</span></p>
+        </div>
+
+        <div style="display: flex; gap: 12px; width: 100%;">
+          <a href="profile.html" class="btn-primary" style="flex: 1; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center;">
+            <span>Profile & Security</span>
+          </a>
+          <button type="button" id="logoutBtn" class="btn-secondary" style="flex: 1;">
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

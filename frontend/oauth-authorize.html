@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureID - OAuth 2.0 Consent & Authorize</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 500px;">
+      <div class="brand-header">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+          <span class="brand-title">SecureID</span>
+        </div>
+      </div>
+
+      <div id="alertBox" class="alert"></div>
+
+      <!-- OAUTH CONSENT PANEL -->
+      <div id="consentPanel" class="step-panel active center-content">
+        <h2 class="step-title">Authorize Application</h2>
+        <p class="step-description">An external client application wants to connect with your SecureID account.</p>
+
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 18px; border-radius: 10px; margin: 20px 0; text-align: left;">
+          <p style="font-weight: 600; font-size: 1rem; color: var(--text-main); margin-bottom: 8px;">
+            Application: <span id="clientNameDisplay" style="color: var(--primary);">Loading...</span>
+          </p>
+          <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px;">Requested Scopes:</p>
+          <ul style="font-size: 0.84rem; color: var(--text-main); padding-left: 20px; line-height: 1.6;">
+            <li>View your OpenID identity profile</li>
+            <li>Access your email address</li>
+            <li>Access your user roles</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; gap: 12px; width: 100%;">
+          <button type="button" id="allowBtn" class="btn-primary" style="flex: 1;">
+            <span>Allow & Authorize</span>
+          </button>
+          <button type="button" id="cancelBtn" class="btn-secondary" style="flex: 1;">
+            <span>Cancel</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/oauth-authorize.js"></script>
+</body>
+</html>

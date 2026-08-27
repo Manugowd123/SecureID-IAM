@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureID - Account Setup & Verification</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="brand-header">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+          <span class="brand-title">SecureID</span>
+        </div>
+      </div>
+
+      <div id="alertBox" class="alert"></div>
+
+      <!-- STEP 1: REGISTRATION FORM -->
+      <div id="step1-registration" class="step-panel active">
+        <p class="brand-subtitle">Create your account</p>
+        <form id="registerForm" novalidate style="margin-top: 20px;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Manoj" required>
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Gowda" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="manoj@example.com" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="9876543210" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="••••••••" required>
+              <div class="password-rules">
+                Must be 8+ chars with uppercase, lowercase, digit & symbol.
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
+            </div>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn-primary">
+            <span class="spinner" id="spinner"></span>
+            <span id="btnText">Create Account</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- STEP 2: EMAIL OTP SCREEN -->
+      <div id="step2-email-otp" class="step-panel">
+        <h2 class="step-title">Verify your email</h2>
+        <p class="step-description">We sent a verification code to your email.</p>
+
+        <div class="form-group" style="margin-top: 24px;">
+          <label for="emailOtpInput">Enter 6-digit OTP</label>
+          <input type="text" id="emailOtpInput" maxlength="6" class="otp-input" placeholder="000000" autocomplete="off">
+        </div>
+
+        <div class="btn-group">
+          <button type="button" id="verifyEmailOtpBtn" class="btn-primary">
+            <span class="spinner" id="emailSpinner"></span>
+            <span>Verify OTP</span>
+          </button>
+          <button type="button" id="resendEmailOtpBtn" class="btn-secondary">
+            <span>Resend OTP</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: SMS OTP SCREEN -->
+      <div id="step3-sms-otp" class="step-panel">
+        <h2 class="step-title">Verify your phone</h2>
+        <p class="step-description">We sent a verification code to your phone.</p>
+
+        <div class="form-group" style="margin-top: 24px;">
+          <label for="smsOtpInput">Enter 6-digit OTP</label>
+          <input type="text" id="smsOtpInput" maxlength="6" class="otp-input" placeholder="000000" autocomplete="off">
+        </div>
+
+        <div class="btn-group">
+          <button type="button" id="verifySmsOtpBtn" class="btn-primary">
+            <span class="spinner" id="smsSpinner"></span>
+            <span>Verify OTP</span>
+          </button>
+          <button type="button" id="resendSmsOtpBtn" class="btn-secondary">
+            <span>Resend OTP</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: MFA COMPLETE SCREEN -->
+      <div id="step4-mfa-complete" class="step-panel center-content">
+        <div class="status-icon success-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <h2 class="step-title">Verification Complete</h2>
+        <p class="step-description" style="margin-bottom: 8px;">Your email and phone have been verified.</p>
+        <p class="step-description highlight-text">Multi-factor authentication has been enabled.</p>
+        
+        <button type="button" id="continueMfaBtn" class="btn-primary" style="margin-top: 28px;">
+          <span>Continue</span>
+        </button>
+      </div>
+
+      <!-- STEP 5: REGISTRATION SUCCESSFUL SCREEN -->
+      <div id="step5-final-success" class="step-panel center-content">
+        <div class="status-icon success-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h2 class="step-title">Registration Successful</h2>
+        <p class="step-description" style="margin-bottom: 8px;">Your SecureID account has been created successfully.</p>
+        <p class="step-description highlight-text">MFA is enabled for your account.</p>
+
+        <a href="login.html" class="btn-primary link-btn" style="margin-top: 28px; text-decoration: none;">
+          <span>Go to Login</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/register.js"></script>
+</body>
+</html>

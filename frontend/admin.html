@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureID - Admin Governance & User Directory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .user-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.84rem;
+    }
+    .user-table th, .user-table td {
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .user-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+    }
+    .role-badge {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .role-admin { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
+    .role-user { background: rgba(255, 255, 255, 0.08); color: var(--text-muted); border: 1px solid rgba(255, 255, 255, 0.15); }
+    .status-locked { color: #ef4444; font-weight: 600; }
+    .status-active { color: #22c55e; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="max-width: 820px;">
+      <div class="brand-header">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+          <span class="brand-title">SecureID Admin</span>
+        </div>
+      </div>
+
+      <div id="alertBox" class="alert"></div>
+
+      <!-- ADMIN PANEL -->
+      <div id="adminPanel" class="step-panel active">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h2 class="step-title" style="margin-bottom: 4px;">User Directory & Governance</h2>
+            <p class="step-description">Manage system users, RBAC roles, and account security locks.</p>
+          </div>
+        </div>
+
+        <div id="adminTableContainer" style="overflow-x: auto; margin-top: 16px;">
+          <p style="text-align: center; color: var(--text-muted); padding: 20px;">Loading user directory...</p>
+        </div>
+
+        <div style="margin-top: 24px; display: flex; gap: 12px;">
+          <a href="profile.html" class="btn-secondary" style="flex: 1; text-decoration: none; text-align: center;">
+            <span>Profile</span>
+          </a>
+          <a href="login.html" class="btn-secondary" style="flex: 1; text-decoration: none; text-align: center;">
+            <span>Dashboard</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
